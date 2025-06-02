@@ -38,7 +38,7 @@ function Navbar() {
                         className="h-12 w-12 object-cover rounded-full shadow-lg"
                     />
                     <span className="text-2xl font-extrabold text-orange-800 tracking-wide">
-                        Edu<span className="text-red-500">Learn</span>
+                        Edu<span className="text-red-500">Nova</span>
                     </span>
                 </div>
 
@@ -96,7 +96,7 @@ function Home() {
                     </span>
 
                     <h1 className="text-5xl md:text-6xl font-black leading-tight tracking-tight">
-                        Transform Your Career with <span className="text-[#22CB76]">EduLearn</span>
+                        Transform Your Career with <span className="text-[#22CB76]">EduNova</span>
                     </h1>
 
                     <p className="text-gray-300 text-lg max-w-xl">
@@ -130,23 +130,23 @@ function Home() {
                 <div className="relative w-full">
                     <div className="relative bg-white/10 backdrop-blur-md border border-white/20 p-6 rounded-3xl shadow-2xl">
                         <img
-                            src="https://img.freepik.com/free-vector/matrix-style-binary-code-digital-falling-numbers-blue-background_1017-37387.jpg?ga=GA1.1.1686216240.1747989762&semt=ais_hybrid&w=740"
+                            src="https://img.freepik.com/free-photo/learning-education-ideas-insight-intelligence-study-concept_53876-120116.jpg?ga=GA1.1.1686216240.1747989762&semt=ais_hybrid&w=740"
                             alt="Online Learning"
                             className="w-full rounded-2xl shadow-lg"
                         />
-                        <div className="absolute -bottom-6 left-6 bg-green-600 text-white px-4 py-2 rounded-full shadow-lg text-sm font-semibold">
+                        {/* <div className="absolute -bottom-6 left-6 bg-green-600 text-white px-4 py-2 rounded-full shadow-lg text-sm font-semibold">
                             💼 Job-Ready in Weeks
-                        </div>
+                        </div> */}
                     </div>
 
                   
-                    <div className="absolute top-4 right-0 bg-white/10 backdrop-blur-lg border border-white/20 text-white px-4 py-3 rounded-xl flex items-center gap-4 shadow-xl">
+                    {/* <div className="absolute top-4 right-0 bg-white/10 backdrop-blur-lg border border-white/20 text-white px-4 py-3 rounded-xl flex items-center gap-4 shadow-xl">
                         <FaStar className="text-yellow-400 text-lg" />
                         <div>
                             <p className="text-sm font-semibold">4.9 / 5.0</p>
                             <span className="text-xs text-gray-300">Avg Course Rating</span>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </div>
 
@@ -226,7 +226,7 @@ function Hero() {
                     </span>
 
                     <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight">
-                        Empower Your <span className="text-orange-500">Future</span> with EduLearn
+                        Empower Your <span className="text-orange-500">Future</span> with EduNova
                     </h2>
 
                     <p className="text-lg text-gray-700 max-w-xl">
@@ -237,7 +237,7 @@ function Hero() {
                     <ul className="space-y-2 text-gray-800">
                         <li className="flex items-center gap-3">
                             <FaStar className="text-yellow-400" />
-                            10,000+ learners trust EduLearn
+                            10,000+ learners trust EduNova
                         </li>
                         <li className="flex items-center gap-3">
                             <FaChalkboardTeacher className="text-green-500" />
@@ -501,7 +501,7 @@ function WhyChooseUs() {
 
     return (
         <section className="bg-gradient-to-br from-orange-50 to-yellow-100 py-20 px-6 sm:px-12 lg:px-24">
-            <h2 className="text-4xl font-extrabold text-center text-gray-800 mb-12">🚀 Why Choose EduLearn?</h2>
+            <h2 className="text-4xl font-extrabold text-center text-gray-800 mb-12">🚀 Why Choose EduNova?</h2>
             <div className="grid md:grid-cols-3 gap-10 max-w-6xl mx-auto">
                 {features.map((f, idx) => (
                     <div key={idx} className="text-center bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition">
@@ -589,7 +589,7 @@ function Footer() {
                             className="h-10 w-10 object-cover rounded-full shadow-md"
                         />
                         <span className="text-2xl font-extrabold text-orange-800">
-                            Edu<span className="text-red-500">Learn</span>
+                            Edu<span className="text-red-500">Nova</span>
                         </span>
                     </div>
                     <p className="text-sm text-gray-600">
