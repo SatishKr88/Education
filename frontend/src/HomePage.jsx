@@ -1,15 +1,18 @@
 import { useState, useEffect } from "react";
 import { FaHome, FaInfoCircle, FaBook, FaSignInAlt, FaUserPlus, FaBars } from "react-icons/fa";
 import { FaStar, FaChalkboardTeacher } from "react-icons/fa";
-import { FaUserGraduate, FaClock,  FaQuoteLeft } from "react-icons/fa";
+import { FaUserGraduate, FaClock, FaQuoteLeft } from "react-icons/fa";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { Link } from "react-router-dom";
+
 
 
 function Navbar() {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+   
 
     useEffect(() => {
         const onScroll = () => {
@@ -20,11 +23,11 @@ function Navbar() {
     }, []);
 
     const navItems = [
-        { label: "Home", icon: <FaHome /> },
-        { label: "About", icon: <FaInfoCircle /> },
-        { label: "Courses", icon: <FaBook /> },
-        { label: "Login", icon: <FaSignInAlt /> },
-        { label: "Register", icon: <FaUserPlus /> }
+        { label: "Home", href: "/", icon: <FaHome /> },
+        { label: "About", href: "/about", icon: <FaInfoCircle /> },
+        { label: "Courses", href: "/courses", icon: <FaBook /> },
+        { label: "Login", href: "/login", icon: <FaSignInAlt /> },
+        { label: "Register", href: "/register", icon: <FaUserPlus /> }
     ];
 
     return (
@@ -47,49 +50,61 @@ function Navbar() {
                     <FaBars />
                 </button>
 
-
                 <ul className="hidden lg:flex items-center space-x-6 text-md font-semibold">
                     {navItems.map((item, idx) => (
                         <li
                             key={idx}
-                            className={`flex items-center gap-2 text-red-600 hover:text-red-800 transition duration-300 cursor-pointer hover:scale-105
-                                ${item.label === "Login" || item.label === "Register"
-                                    ? "border border-red-600 px-3 py-1 rounded-full hover:bg-red-100"
-                                    : ""
-                                }`}
                         >
-                            {item.icon}
-                            {item.label}
+                            <Link
+                                to={item.href}
+
+                                className={`flex items-center gap-2 text-red-600 hover:text-red-800 transition duration-300 cursor-pointer hover:scale-105
+                                ${item.label === "Login" || item.label === "Register"
+                                        ? "border border-red-600 px-3 py-1 rounded-full hover:bg-red-100"
+                                        : ""
+                                    }`}
+                            >
+
+                                {item.icon}
+                                {item.label}
+
+                            </Link>
                         </li>
                     ))}
                 </ul>
             </div>
-            {isMobileMenuOpen && (
-                <ul className="lg:hidden flex flex-col items-start px-6 pb-4 bg-orange-100 space-y-3 animate-slideDown text-md">
-                    {navItems.map((item, idx) => (
-                        <li
-                            key={idx}
-                            className="flex items-center gap-3 text-red-700 hover:text-red-900 transition-all cursor-pointer"
-                        >
-                            {item.icon}
-                            {item.label}
-                        </li>
-                    ))}
-                </ul>
-            )}
-        </nav>
+            {
+                isMobileMenuOpen && (
+                    <ul className="lg:hidden flex flex-col items-start px-6 pb-4 bg-orange-100 space-y-3 animate-slideDown text-md">
+                        {navItems.map((item, idx) => (
+                            <li
+                                key={idx}
+                                className="flex items-center gap-3 text-red-700 hover:text-red-900 transition-all cursor-pointer"
+                            >
+                                {item.icon}
+                                {item.label}
+                            </li>
+                        ))}
+                    </ul>
+                )
+            }
+           
+        </nav >
+
+
     );
 }
+
 
 function Home() {
     return (
         <section className="relative bg-gradient-to-b from-[#1F1C2C] via-[#2C2D3C] to-[#3E3A5A] text-white py-24 px-6 md:px-12 lg:px-24 overflow-hidden">
-           
+
             <div className="absolute top-0 left-0 w-64 h-64 bg-green-400/10 blur-3xl rounded-full -z-10" />
             <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#22CB76]/10 blur-3xl rounded-full -z-10" />
 
             <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 items-center gap-20 relative z-10">
-                
+
                 <div className="space-y-8">
                     <span className="inline-flex items-center gap-3 bg-[#22CB76]/20 text-[#22CB76] font-bold px-4 py-1 rounded-full text-sm tracking-widest uppercase shadow-md">
                         <FaUserGraduate /> Top-Tier Learning Hub
@@ -103,7 +118,7 @@ function Home() {
                         Explore curated tech courses, get mentored by industry leaders, and join a thriving global student community—all at your fingertips.
                     </p>
 
-                   
+
                     <div className="grid grid-cols-2 gap-6 max-w-md pt-4">
                         <div className="bg-white/10 rounded-xl px-4 py-5 text-center shadow-inner backdrop-blur-sm">
                             <h3 className="text-3xl font-bold text-green-300">10K+</h3>
@@ -115,7 +130,7 @@ function Home() {
                         </div>
                     </div>
 
-                 
+
                     <div className="pt-6 flex flex-col sm:flex-row gap-4">
                         <button className="bg-gradient-to-r from-green-500 to-emerald-400 text-white font-semibold px-6 py-3 rounded-full hover:scale-105 transition-all shadow-lg">
                             🎓 Start Learning Today
@@ -126,7 +141,7 @@ function Home() {
                     </div>
                 </div>
 
-                
+
                 <div className="relative w-full">
                     <div className="relative bg-white/10 backdrop-blur-md border border-white/20 p-6 rounded-3xl shadow-2xl">
                         <img
@@ -139,7 +154,7 @@ function Home() {
                         </div> */}
                     </div>
 
-                  
+
                     {/* <div className="absolute top-4 right-0 bg-white/10 backdrop-blur-lg border border-white/20 text-white px-4 py-3 rounded-xl flex items-center gap-4 shadow-xl">
                         <FaStar className="text-yellow-400 text-lg" />
                         <div>
@@ -150,7 +165,7 @@ function Home() {
                 </div>
             </div>
 
-           
+
             <div className="mt-24 max-w-5xl mx-auto text-center px-6">
                 <TestimonialSlider />
             </div>
@@ -580,7 +595,7 @@ function Footer() {
     return (
         <footer className="bg-gradient-to-r from-orange-100 to-yellow-50 text-gray-800 pt-10 pb-6 border-t border-orange-200 ">
             <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-10">
-              
+
                 <div>
                     <div className="flex items-center mb-4 space-x-2">
                         <img
@@ -597,7 +612,7 @@ function Footer() {
                     </p>
                 </div>
 
-                
+
                 <div>
                     <h4 className="text-lg font-semibold mb-3 text-orange-700">Quick Links</h4>
                     <ul className="space-y-2 text-sm">
@@ -609,7 +624,7 @@ function Footer() {
                     </ul>
                 </div>
 
-                
+
                 <div>
                     <h4 className="text-lg font-semibold mb-3 text-orange-700">Contact</h4>
                     <p className="text-sm">12/1/H/kolkata<br />Knowledge City, ED 1010</p>
@@ -617,7 +632,7 @@ function Footer() {
                     <p className="text-sm">Phone: +917504567890</p>
                 </div>
 
-                
+
                 <div>
                     <h4 className="text-lg font-semibold mb-3 text-orange-700">Stay Updated</h4>
                     <form className="flex flex-col space-y-2">
@@ -639,7 +654,7 @@ function Footer() {
                 </div>
             </div>
 
-            
+
             <div className="text-center text-sm mt-10 text-gray-500 border-t border-orange-200 pt-4">
                 © {new Date().getFullYear()} EduLearn. All rights reserved.
             </div>
@@ -653,12 +668,12 @@ function Homepage() {
         <>
             <Navbar />
             <Home />
-            <WhyChooseUs/>
+            <WhyChooseUs />
             <Hero />
             <CourseList />
-            <FeaturedMentors/>
-            <SuccessStories/>
-            <Footer/>
+            <FeaturedMentors />
+            <SuccessStories />
+            <Footer />
         </>
     )
 };
