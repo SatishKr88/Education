@@ -1,7 +1,7 @@
 const con = require('../config/db');
 
 const logincredential = (email_id, password, callback) => {
-  const query = "SELECT * FROM userloginregister WHERE email_id = ? AND password = ?";
+  const query = "SELECT * FROM userloginregister WHERE email_id = ? AND password = ? ";
 
   con.query(query, [email_id, password], (err, result) => {
     if (err) {

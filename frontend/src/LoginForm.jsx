@@ -1,17 +1,31 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 function LoginForm() {
     const [formData, setFormData] = useState({ email_id: '', password: '' });
+    const [recaptchaToken, setRecaptchaToken] = useState('');
+    const [isVerified, setIsVerified] = useState(false);
     const navigate = useNavigate();
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData((prev) => ({ ...prev, [name]: value }));
     };
 
+    const handleCaptchaChange = (value) => {
+        // console.log("Captcha token:", value);
+        setRecaptchaToken(value);
+        setIsVerified(!!value);
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('Form submitted:', formData);
+
+        if (!isVerified) {
+            alert("Please verify that you are not a robot.");
+            return;
+        }
 
         try {
             const response = await fetch('http://127.0.0.1:3000/login', {
@@ -19,7 +33,7 @@ function LoginForm() {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(formData),
+                body: JSON.stringify({ ...formData, recaptchaToken }),
             });
 
             if (!response.ok) {
@@ -27,15 +41,13 @@ function LoginForm() {
             }
 
             const data = await response.json();
-            console.log('Login successful:', data);
-             navigate('/dashboard');
+            // console.log('Login successful:', data);
+            navigate('/dashboard');
 
         } catch (error) {
             console.error('Error during login:', error);
-           
         }
     };
-
 
     return (
         <div className="max-w-md mx-auto bg-white p-8 mt-10 shadow-md rounded-lg border border-orange-200">
@@ -51,7 +63,7 @@ function LoginForm() {
                         name="email_id"
                         value={formData.email_id}
                         onChange={handleChange}
-                        placeholder='Enter your email'
+                        placeholder="Enter your email"
                         required
                         className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-orange-300"
                     />
@@ -65,7 +77,7 @@ function LoginForm() {
                         id="password"
                         type="password"
                         name="password"
-                        placeholder='Enter your password'
+                        placeholder="Enter your password"
                         value={formData.password}
                         onChange={handleChange}
                         required
@@ -73,9 +85,21 @@ function LoginForm() {
                     />
                 </div>
 
+                <div className="mb-6">
+                    <ReCAPTCHA
+                        sitekey="6LeClmcrAAAAAJhEHlDX2tqFp75YucaJfuZvx9XE"
+                        onChange={handleCaptchaChange}
+                        theme="light"
+                    />
+                </div>
+
                 <button
                     type="submit"
-                    className="w-full bg-orange-500 text-white py-2 rounded-md hover:bg-orange-600 transition duration-300"
+                    disabled={!isVerified}
+                    className={`w-full py-2 rounded-md transition duration-300 ${isVerified
+                            ? "bg-orange-500 text-white hover:bg-orange-600"
+                            : "bg-gray-300 text-gray-500 cursor-not-allowed"
+                        }`}
                 >
                     Login
                 </button>
