@@ -14,7 +14,7 @@ function LoginForm() {
     };
 
     const handleCaptchaChange = (value) => {
-        // console.log("Captcha token:", value);
+       
         setRecaptchaToken(value);
         setIsVerified(!!value);
     };
@@ -85,7 +85,7 @@ function LoginForm() {
                     />
                 </div>
 
-                <div className="mb-6">
+                <div className="mb-6 ">
                     <ReCAPTCHA
                         sitekey="6LeClmcrAAAAAJhEHlDX2tqFp75YucaJfuZvx9XE"
                         onChange={handleCaptchaChange}
